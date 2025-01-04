@@ -1,7 +1,7 @@
 import { lazy, LazyExoticComponent } from "react";
 import { NoLazy } from "../01-lazyload/pages/NoLazy";
 import { RegisterPage } from "../03-forms/pages/RegisterPage";
-import { FormikBasicPage, FormikYupPage, FormikComponents, FormikAbstractation } from "../03-forms/pages";
+import { FormikBasicPage, FormikYupPage, FormikComponents, FormikAbstractation, RegisterFormikPage, DynamicForm } from "../03-forms/pages";
 
 // import { LazyPage1, LazyPage2, LazyPage3 } from "../01-lazyload/pages";
 
@@ -17,6 +17,12 @@ interface Route {
 const LazyLayout = lazy(() => import( /* webpackChunkName: "LazyLayout" */ '../01-lazyload/layout/LazyLayout'));
 
 export const routes: Route[] = [
+    {
+        to: '/register',
+        path: 'register',
+        Component: RegisterPage,
+        name: 'Register Page'
+    },
     {
         to: '/formik-basic',
         path: 'formik-basic',
@@ -42,10 +48,16 @@ export const routes: Route[] = [
         name: 'Formik Abstractation'
     },
     {
-        to: '/register',
-        path: 'register',
-        Component: RegisterPage,
-        name: 'Register Page'
+        to: '/register-formik',
+        path: 'register-formik',
+        Component: RegisterFormikPage,
+        name: 'Register Formik'
+    },
+    {
+        to: '/dynamic-form',
+        path: 'dynamic-form',
+        Component: DynamicForm,
+        name: 'Dynamic Form',
     },
     {
         to: '/lazyload',

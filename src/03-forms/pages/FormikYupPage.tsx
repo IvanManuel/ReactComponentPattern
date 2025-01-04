@@ -5,7 +5,6 @@ import "../styles/styles.css";
 
 export const FormikYupPage = () => {
 
-    
 
     const { handleSubmit, getFieldProps, errors, touched } = useFormik({
         initialValues: {
