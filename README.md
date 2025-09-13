@@ -1,50 +1,107 @@
-# React + TypeScript + Vite
+# React Component Patterns
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Implementación práctica de distintos **patrones de componentes avanzados** en React con TypeScript, donde se exploramos técnicas de diseño modernas para crear componentes reutilizables, escalables y mantenibles.
 
-Currently, two official plugins are available:
+> **Este proyecto contiene múltiples ramas, cada una dedicada a una práctica o patrón diferente de componentes en React. La rama `master` solo muestra una parte del contenido.**
+>
+> Para ver ejemplos completos y todas las prácticas, explora las siguientes ramas:
+>
+> - `master`: Introducción y base del proyecto
+> - `component-control-props`: Ejemplo de Control Props Pattern
+> - `component-control-props-alt`: Variante alternativa de Control Props
+> - `component-control-props-alternative`: Otra alternativa de Control Props
+> - `component-state-initializer`: Inicialización de estado en componentes
+> - `control-props`: Práctica de control de props
+> - `forms`: Ejemplos de formularios con Formik y Yup
+> - `forms-dynamic`: Formularios dinámicos generados desde JSON
+> - `pre-npm`: Versión previa a la gestión con npm
+>
+> Puedes cambiar de rama con:
+> ```bash
+> git checkout <nombre-de-la-rama>
+> ```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Objetivo
 
-## Expanding the ESLint configuration
+El proyecto demuestra la implementación de varios patrones de diseño de componentes en React, incluyendo:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Compound Component Pattern** - Componentes que trabajan juntos como una unidad
+- **Extensible Styles** - Estilos flexibles y personalizables
+- **Control Props Pattern** - Control externo del estado de componentes
+- **Higher-Order Components (HOC)** - Componentes de orden superior
+- **Custom Hooks** - Lógica reutilizable
+- **Lazy Loading** - Carga diferida de componentes
+- **Dynamic Forms** - Formularios generados dinámicamente
 
-- Configure the top-level `parserOptions` property like this:
+## Tecnologías Utilizadas
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- **React 18.3** - Biblioteca de interfaz de usuario
+- **TypeScript 5.5** - Tipado estático
+- **Vite 5.4** - Herramienta de construcción y desarrollo
+- **React Router DOM 6.27** - Enrutamiento
+- **Formik 2.4** - Manejo de formularios
+- **Yup 1.6** - Validación de esquemas
+- **CSS Modules** - Estilos modulares
+
+## Patrones Implementados
+
+### 1. Compound Component Pattern
+Implementado en `ProductCard`, permite usar componentes de forma declarativa:
+
+```tsx
+<ProductCard product={product}>
+  <ProductCard.Image />
+  <ProductCard.Title />
+  <ProductCard.Buttons />
+</ProductCard>
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### 2. Extensible Styles
+Soporte para estilos personalizables a través de props:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+```tsx
+<ProductCard 
+  className="custom-class" 
+  style={{ backgroundColor: '#70D1F8' }}
+>
+  <ProductCard.Image className="custom-image" />
+</ProductCard>
+```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### 3. Control Props Pattern
+Control externo del estado del componente:
+
+```tsx
+const { count, increaseBy } = useProduct();
+// Estado controlado externamente
+```
+
+### 4. Dynamic Forms
+Formularios generados dinámicamente desde JSON:
+
+```tsx
+// Configuración desde custom-form.json
+<DynamicForm />
+```
+
+## Instalación y Uso
+
+1. **Clonar el repositorio**
+```bash
+git clone <repository-url>
+```
+
+2. **Instalar dependencias**
+```bash
+npm install
+```
+
+3. **Ejecutar en desarrollo**
+```bash
+npm run dev
+```
+
+4. **Construir para producción**
+```bash
+npm run build
 ```
